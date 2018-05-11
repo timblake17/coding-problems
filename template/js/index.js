@@ -27,52 +27,86 @@
 // }
 
 ///You are going to be given a word. Your job is to return the middle character of the word. If the word's length is odd, return the middle character. If the word's length is even, return the middle 2 characters.
-function getMiddle(s)
-{
-var len=s.length
-  if(len%2==0){
-  var letter=s.slice(len/2-1,len/2+1);
-}else{
-  letter=s.slice(len/2,len/2+1)
-}
-return letter
-}
-
-console.log(getMiddle('test'))
+// function getMiddle(s)
+// {
+// var len=s.length
+//   if(len%2==0){
+//   var letter=s.slice(len/2-1,len/2+1);
+// }else{
+//   letter=s.slice(len/2,len/2+1)
+// }
+// return letter
+// }
+//
+// console.log(getMiddle('test'))
 
 //
 // In this kata you will create a function that takes a list of non-negative integers and strings and returns a new list with the strings filtered out.
 
+//
+// function filter_list(l) {
+//   var final=[];
+//   for(var i=0; i<l.length; i++){
+//   var index=l[i];
+//   var type= typeof index;
+//
+//   if(type=='number'){
+//     final.push(index)
+//       }
+//     }
+//      return final
+//   }
+//
+//
+//   function multiplicationTable(width, height){
+//     var table = [];
+//     var row = [];
+//
+//     for (i = 0; i < width; i++){
+//       for (j = 0; j < height; j++){
+//         row.push((i + 1)*(j + 1));
+//       }
+//       table.push(row);
+//       row = [];
+//     }
+//     return table;
+//   }
 
-function filter_list(l) {
-  var final=[];
-  for(var i=0; i<l.length; i++){
-  var index=l[i];
-  var type= typeof index;
+///A consonant is any letter of the alphabet except a, e, i ,o, u. The consonant substrings in the word "zodiacs" are z, d, cs. Assuming a = 1, b = 2 ... z = 26, the values of these substrings are 26 ,4, 22 because z = 26,d = 4,cs=3+19=22. The maximum value of these substrings is 26. Therefore, solve("zodiacs") = 26.
 
-  if(type=='number'){
-    final.push(index)
+// Given a lowercase string that has alphabetic characters only and no spaces, return the highest value of consonant substrings.
+
+function letterValue(str){
+    var anum={
+        a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9, j: 10, k: 11,
+        l: 12, m: 13, n: 14,o: 15, p: 16, q: 17, r: 18, s: 19, t: 20,
+        u: 21, v: 22, w: 23, x: 24, y: 25, z: 26
+    }
+    if(str.length== 1) return anum[str] || ' ';
+    var converted= str.split('').map(letterValue);
+}
+
+function solve(s) {
+  var arr=[];
+  var total=0;
+
+   var letterArr= s.split("");
+  for(var i=0; i<letterArr.length; i++){
+    var letter = letterArr[i]
+
+    function vowelTest(s) {
+      var tested= (/^[aeiou]$/i).test(s);
+      if(tested==!true){
+        total=total + letterValue(letter)
+        console.log(total)
+      }else  {
+        arr.push(total);
+        total=0;
       }
     }
-     return final
+
+    vowelTest(letter)
   }
+  console.log(Math.max.apply(null, arr))
 
-
-  function multiplicationTable(width, height){
-    var table = [];
-    var row = [];
-
-    for (i = 0; i < width; i++){
-      for (j = 0; j < height; j++){
-        row.push((i + 1)*(j + 1));
-      }
-      table.push(row);
-      row = [];
-    }
-    return table;
-  }
-
-    //first num is how many arrays
-    ///second num is how many numbers in the array
-    //for loop for second number
-  }
+}
