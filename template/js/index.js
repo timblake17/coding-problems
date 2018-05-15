@@ -75,38 +75,94 @@
 ///A consonant is any letter of the alphabet except a, e, i ,o, u. The consonant substrings in the word "zodiacs" are z, d, cs. Assuming a = 1, b = 2 ... z = 26, the values of these substrings are 26 ,4, 22 because z = 26,d = 4,cs=3+19=22. The maximum value of these substrings is 26. Therefore, solve("zodiacs") = 26.
 
 // Given a lowercase string that has alphabetic characters only and no spaces, return the highest value of consonant substrings.
+//
+// function letterValue(str){
+//     var anum={
+//         a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9, j: 10, k: 11,
+//         l: 12, m: 13, n: 14,o: 15, p: 16, q: 17, r: 18, s: 19, t: 20,
+//         u: 21, v: 22, w: 23, x: 24, y: 25, z: 26
+//     }
+//     if(str.length== 1) return anum[str] || ' ';
+//     var converted= str.split('').map(letterValue);
+// }
+//
+// function solve(s) {
+//   var arr=[];
+//   var total=0;
+//
+//    var letterArr= s.split("");
+//   for(var i=0; i<letterArr.length; i++){
+//     var letter = letterArr[i]
+//
+//     function vowelTest(s) {
+//       var tested= (/^[aeiou]$/i).test(s);
+//       if(tested==!true){
+//         total=total + letterValue(letter)
+//         console.log(total)
+//       }else  {
+//         arr.push(total);
+//         total=0;
+//       }
+//     }
+//
+//     vowelTest(letter)
+//   }
+//   console.log(Math.max.apply(null, arr))
+//
+// }
+// You are given a secret message you need to decipher. Here are the things you need to know to decipher it:
+//
+// For each word:
+//
+// the second and the last letter is switched (e.g. Hello becomes Holle)
+// the first letter is replaced by its character code (e.g. H becomes 72)
 
-function letterValue(str){
-    var anum={
-        a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9, j: 10, k: 11,
-        l: 12, m: 13, n: 14,o: 15, p: 16, q: 17, r: 18, s: 19, t: 20,
-        u: 21, v: 22, w: 23, x: 24, y: 25, z: 26
-    }
-    if(str.length== 1) return anum[str] || ' ';
-    var converted= str.split('').map(letterValue);
-}
 
-function solve(s) {
-  var arr=[];
-  var total=0;
+function ascii (a) { return a.charCodeAt(0); }
+//
+// console.log(ascii('t'))
 
-   var letterArr= s.split("");
-  for(var i=0; i<letterArr.length; i++){
-    var letter = letterArr[i]
 
-    function vowelTest(s) {
-      var tested= (/^[aeiou]$/i).test(s);
-      if(tested==!true){
-        total=total + letterValue(letter)
-        console.log(total)
-      }else  {
-        arr.push(total);
-        total=0;
+
+
+// You are given a secret message you need to decipher. Here are the things you need to know to decipher it:
+//
+// For each word:
+//
+// the second and the last letter is switched (e.g. Hello becomes Holle)
+// the first letter is replaced by its character code (e.g. H becomes 72)
+function decipherThis(str) {
+  var final=[];
+  var temp=[];
+  var strArr=str.split(" ");
+  for(var i=0; i<strArr.length; i++){
+    var word=strArr[i];
+    for(var j=0; j<word.length; j++){
+      var letter=word[j];
+      if(letter.match(/^-{0,1}\d+$/)){
+        letter=parseInt(letter)
+        temp.push(letter)
       }
     }
-
-    vowelTest(letter)
+    final.push(String.fromCharCode(temp.join("")))
+    temp=[];
+    var k;
+  for(k=0; k<word.length; k++){
+    var number=word[k];
+    if(isNaN(parseInt(number))){
+      break;
+    }
   }
-  console.log(Math.max.apply(null, arr))
+  if(k!=word.length){
+  final.push(word[word.length-1])
+  final.push(word.slice(k+1, word.length-1))
+  if(word.length-1!=k){
+  final.push(word[k])
+  }
+  }
+  final.push(' ')
 
-}
+  }
+  final.pop();
+  return (final.join(""))
+  }
