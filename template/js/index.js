@@ -131,38 +131,96 @@ function ascii (a) { return a.charCodeAt(0); }
 //
 // the second and the last letter is switched (e.g. Hello becomes Holle)
 // the first letter is replaced by its character code (e.g. H becomes 72)
-function decipherThis(str) {
-  var final=[];
-  var temp=[];
-  var strArr=str.split(" ");
-  for(var i=0; i<strArr.length; i++){
-    var word=strArr[i];
-    for(var j=0; j<word.length; j++){
-      var letter=word[j];
-      if(letter.match(/^-{0,1}\d+$/)){
-        letter=parseInt(letter)
-        temp.push(letter)
-      }
-    }
-    final.push(String.fromCharCode(temp.join("")))
-    temp=[];
-    var k;
-  for(k=0; k<word.length; k++){
-    var number=word[k];
-    if(isNaN(parseInt(number))){
-      break;
-    }
-  }
-  if(k!=word.length){
-  final.push(word[word.length-1])
-  final.push(word.slice(k+1, word.length-1))
-  if(word.length-1!=k){
-  final.push(word[k])
-  }
-  }
-  final.push(' ')
+// function decipherThis(str) {
+//   var final=[];
+//   var temp=[];
+//   var strArr=str.split(" ");
+//   for(var i=0; i<strArr.length; i++){
+//     var word=strArr[i];
+//     for(var j=0; j<word.length; j++){
+//       var letter=word[j];
+//       if(letter.match(/^-{0,1}\d+$/)){
+//         letter=parseInt(letter)
+//         temp.push(letter)
+//       }
+//     }
+//     final.push(String.fromCharCode(temp.join("")))
+//     temp=[];
+//     var k;
+//   for(k=0; k<word.length; k++){
+//     var number=word[k];
+//     if(isNaN(parseInt(number))){
+//       break;
+//     }
+//   }
+//   if(k!=word.length){
+//   final.push(word[word.length-1])
+//   final.push(word.slice(k+1, word.length-1))
+//   if(word.length-1!=k){
+//   final.push(word[k])
+//   }
+//   }
+//   final.push(' ')
+//
+//   }
+//   final.pop();
+//   return (final.join(""))
+//   }
+//
+//
+// // If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+//
+// function solution(number){
+// var sum=0;
+//  console.log(number)
+//  for(var i=0; i<number; i++){
+//  if (i%3==0 || i%5==0){
+// sum= sum+i;
+// }
+//  }
+//  return sum
+// }
 
-  }
-  final.pop();
-  return (final.join(""))
-  }
+function domainName(url){
+console.log(url)
+
+  for(var i=0; i<url.length; i++){
+   var letter=url[i]
+   if (letter== ":"||letter=="."){
+   var first=i;
+   for (var j=0; j<url.length+first; j++){
+   if (url[j] == "."){
+    var second=j
+
+   }
+   }
+
+   if(first!==second){
+   var address=url.slice(first+3,second)
+   }
+   else{
+   address=url.slice(0,first)
+   }
+
+   for (var k=0; k<address.length; k++){
+    var addressChar=address[k];
+    if(addressChar == "."&&k>3){
+    console.log(k)
+    address=address.slice(0,k)
+    }
+   }
+  return address
+
+   }
+
+}
+}
+
+// A pangram is a sentence that contains every single letter of the alphabet at least once. For example, the sentence "The quick brown fox jumps over the lazy dog" is a pangram, because it uses the letters A-Z at least once (case is irrelevant).
+//
+// Given a string, detect whether or not it is a pangram. Return True if it is, False if not. Ignore numbers and punctuation.
+
+// function isPangram(string){
+// return /(?=.*a)(?=.*b)(?=.*c)(?=.*d)(?=.*e)(?=.*f)(?=.*g)(?=.*h)(?=.*i)(?=.*j)(?=.*k)(?=.*l)(?=.*m)(?=.*n)(?=.*o)(?=.*p)(?=.*q)(?=.*r)(?=.*s)(?=.*t)(?=.*u)(?=.*v)(?=.*w)(?=.*x)(?=.*y)(?=.*z)./i.test(string)
+//
+// }
