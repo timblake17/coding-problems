@@ -180,41 +180,41 @@ function ascii (a) { return a.charCodeAt(0); }
 //  }
 //  return sum
 // }
-
-function domainName(url){
-console.log(url)
-
-  for(var i=0; i<url.length; i++){
-   var letter=url[i]
-   if (letter== ":"||letter=="."){
-   var first=i;
-   for (var j=0; j<url.length+first; j++){
-   if (url[j] == "."){
-    var second=j
-
-   }
-   }
-
-   if(first!==second){
-   var address=url.slice(first+3,second)
-   }
-   else{
-   address=url.slice(0,first)
-   }
-
-   for (var k=0; k<address.length; k++){
-    var addressChar=address[k];
-    if(addressChar == "."&&k>3){
-    console.log(k)
-    address=address.slice(0,k)
-    }
-   }
-  return address
-
-   }
-
-}
-}
+//
+// function domainName(url){
+// console.log(url)
+//
+//   for(var i=0; i<url.length; i++){
+//    var letter=url[i]
+//    if (letter== ":"||letter=="."){
+//    var first=i;
+//    for (var j=0; j<url.length+first; j++){
+//    if (url[j] == "."){
+//     var second=j
+//
+//    }
+//    }
+//
+//    if(first!==second){
+//    var address=url.slice(first+3,second)
+//    }
+//    else{
+//    address=url.slice(0,first)
+//    }
+//
+//    for (var k=0; k<address.length; k++){
+//     var addressChar=address[k];
+//     if(addressChar == "."&&k>3){
+//     console.log(k)
+//     address=address.slice(0,k)
+//     }
+//    }
+//   return address
+//
+//    }
+//
+// }
+// }
 
 // A pangram is a sentence that contains every single letter of the alphabet at least once. For example, the sentence "The quick brown fox jumps over the lazy dog" is a pangram, because it uses the letters A-Z at least once (case is irrelevant).
 //
@@ -224,3 +224,19 @@ console.log(url)
 // return /(?=.*a)(?=.*b)(?=.*c)(?=.*d)(?=.*e)(?=.*f)(?=.*g)(?=.*h)(?=.*i)(?=.*j)(?=.*k)(?=.*l)(?=.*m)(?=.*n)(?=.*o)(?=.*p)(?=.*q)(?=.*r)(?=.*s)(?=.*t)(?=.*u)(?=.*v)(?=.*w)(?=.*x)(?=.*y)(?=.*z)./i.test(string)
 //
 // }
+
+// You probably know the "like" system from Facebook and other pages. People can "like" blog posts, pictures or other items. We want to create the text that should be displayed next to such an item.
+
+function likes(names) {
+  var len=names.length-2;
+    if(names.length==0){
+    return "no one likes this"
+  }else if(names.length==1){
+    return names[0]+' likes this'
+  }else if(names.length==2){
+    return names[0]+' and '+names[1]+' like this'
+  }else if(names.length==3){
+    return names[0]+', '+names[1]+' and '+ names[2] +' like this'
+  }else if(names.length>3){
+    return names[0]+', '+names[1]+' and ' +len+' others like this'
+  }
